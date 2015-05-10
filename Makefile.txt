@@ -1,0 +1,18 @@
+out31:
+        javac -d q31/ Q31.java
+        jar -cvf q31.jar -C q31 .
+        hadoop jar q31.jar org.myorg.Q31 /user/choi257/input/users.dat /user/choi257/out31
+        hdfs dfs -cat /user/choi257/out31/part* > out31.dat
+        javac -d q32/ Q32.java
+        jar -cvf q32.jar -C q32 .
+        hadoop jar q32.jar org.myorg.Q32 /user/choi257/input/ratings.dat /user/choi257/out32
+        hdfs dfs -cat /user/choi257/out32/part* > out32.dat
+        javac -d q33/ Q33.java
+        jar -cvf q33.jar -C q33 .
+        hadoop jar q33.jar org.myorg.Q33 /user/choi257/out31 /user/choi257/out32 /user/choi257/out33
+        hdfs dfs -cat /user/choi257/out33/part* > out33.dat
+        javac -d q34/ Q34.java
+        jar -cvf q34.jar -C q34 .
+        hadoop jar q34.jar org.myorg.Q34 /user/choi257/out33 /user/choi257/out34
+        hdfs dfs -cat /user/choi257/out34/part* > out34.dat
+        cp out34.dat result3.dat
